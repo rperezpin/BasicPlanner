@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_psicologa_sesion_tree" model="ir.ui.view">
+        <field name="name">psicologa.sesion.tree</field>
+        <field name="model">psicologa.sesion</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="paciente_id"/>
+                <field name="fecha"/>
+                <field name="notas"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_psicologa_sesion_form" model="ir.ui.view">
+        <field name="name">psicologa.sesion.form</field>
+        <field name="model">psicologa.sesion</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="paciente_id"/>
+                    <field name="fecha"/>
+                    <field name="notas"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- ACCIÓN PARA LISTA Y FORMULARIO DE SESIONES -->
+    <record id="action_psicologa_sesion" model="ir.actions.act_window">
+        <field name="name">Sesiones</field>
+        <field name="res_model">psicologa.sesion</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- MENÚ RAÍZ -->
+    <menuitem id="menu_psicologa_root" name="Psicología"/>
+
+    <!-- MENÚ HIJO PARA SESIONES -->
+    <menuitem id="menu_psicologa_sesiones" name="Sesiones"
+              parent="menu_psicologa_root"
+              action="action_psicologa_sesion"/>
+</odoo>

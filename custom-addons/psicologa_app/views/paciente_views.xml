@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_psicologa_paciente_tree" model="ir.ui.view">
+        <field name="name">psicologa.paciente.tree</field>
+        <field name="model">psicologa.paciente</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="age"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_psicologa_paciente_form" model="ir.ui.view">
+        <field name="name">psicologa.paciente.form</field>
+        <field name="model">psicologa.paciente</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="age"/>
+                        <field name="email"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_psicologa_paciente" model="ir.actions.act_window">
+        <field name="name">Pacientes</field>
+        <field name="res_model">psicologa.paciente</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Agrega tus pacientes aquí.
+            </p>
+        </field>
+    </record>
+</odoo>
