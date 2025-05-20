@@ -42,6 +42,9 @@ COPY ./addons /mnt/extra-addons
 RUN pip install --upgrade pip \
     && pip install --no-cache-dir -r /requirements.txt
 
+# Crea el directorio de logs y asigna permisos  
+RUN mkdir -p /var/log/odoo && chown odoo:odoo /var/log/odoo
+
 # Expone el puerto Odoo
 EXPOSE 8069
 
