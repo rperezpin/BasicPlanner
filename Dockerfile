@@ -30,6 +30,7 @@ RUN apt-get update && apt-get install -y \
     libx11-dev \
     libegl1-mesa \
     libopus0 \
+    python3-ldap \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
