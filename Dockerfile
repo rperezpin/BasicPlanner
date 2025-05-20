@@ -1,6 +1,9 @@
 FROM odoo:17
 
-# Instala todas las dependencias del sistema necesarias
+# Evita prompts interactivos al instalar paquetes
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Instala las dependencias necesarias del sistema
 RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
@@ -29,18 +32,16 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Copia tus módulos y requerimientos al contenedor
+# Copia requerimientos y módulos
 COPY ./requirements.txt /requirements.txt
 COPY ./addons /mnt/extra-addons
 
-# Instala dependencias Python
+# Instala pip y las dependencias de Python
 RUN pip install --upgrade pip \
-    && pip install ldap3 \
-    && pip install python-ldap \
     && pip install --no-cache-dir -r /requirements.txt
 
 # Expone el puerto Odoo
 EXPOSE 8069
 
-# Configuración por defecto de Odoo
+# Comando por defecto
 CMD ["odoo", "-c", "/etc/odoo/odoo.conf"]
