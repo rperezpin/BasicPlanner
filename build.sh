@@ -2,6 +2,7 @@
 
 # Instalar librerías necesarias del sistema
 apt-get update && apt-get install -y \
+  python3-dev \
   libsasl2-dev \
   libldap2-dev \
   libssl-dev \
