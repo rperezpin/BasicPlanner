@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: odoo17
+    env: python
+    plan: free
+    buildCommand: ./build.sh
+    startCommand: |
+      odoo -c odoo.conf
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 8000
+      - key: DB_HOST
+        value: https://ccazzkctfgfxfmlcdcgf.supabase.co
+      - key: DB_PORT
+        value: 5432
+      - key: DB_NAME
+        value: odoo17
+      - key: DB_USER
+        value: odoo17
+      - key: DB_PASSWORD
+        value: Agerpix12345
