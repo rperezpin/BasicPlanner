@@ -40,6 +40,7 @@ PyPDF2==2.12.1
 pypng==0.20220715.0
 pyserial==3.5
 python-dateutil==2.8.2
+ldap3
 python-ldap==3.4.3
 python-stdnum==1.19
 pytz==2025.2
