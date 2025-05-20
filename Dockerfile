@@ -6,14 +6,12 @@ USER root
 
 RUN apt-get update && apt-get install -y \
     gcc g++ python3-dev build-essential libsasl2-dev \
-    libldap2-dev liblber-dev libssl-dev libxml2-dev libxslt-dev \
+    libldap2-dev libssl-dev libxml2-dev libxslt-dev \
     libpq-dev libjpeg-dev zlib1g-dev libffi-dev libtiff5-dev \
     libjpeg8-dev libopenjp2-7-dev liblcms2-dev libwebp-dev \
     libharfbuzz-dev libfribidi-dev libxcb1-dev libx11-dev \
     libegl1-mesa libopus0 python3-ldap \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Si quiere
 
 COPY ./requirements.txt /requirements.txt
 COPY ./addons /mnt/extra-addons
