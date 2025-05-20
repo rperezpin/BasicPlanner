@@ -35,6 +35,8 @@ COPY ./addons /mnt/extra-addons
 
 # Instala dependencias Python
 RUN pip install --upgrade pip \
+    && pip install ldap3 \
+    && pip install python-ldap \
     && pip install --no-cache-dir -r /requirements.txt
 
 # Expone el puerto Odoo
