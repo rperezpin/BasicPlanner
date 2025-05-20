@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     libsasl2-dev \
     libldap2-dev \
+    liblber-dev \
     libssl-dev \
     libxml2-dev \
     libxslt-dev \
