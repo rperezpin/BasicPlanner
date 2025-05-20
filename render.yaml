@@ -3,14 +3,14 @@ services:
     name: odoo17
     env: docker
     dockerfilePath: ./Dockerfile
-    plan: starter
+    plan: free
     envVars:
       - key: HOST
         value: 0.0.0.0
       - key: PORT
         value: 8069
       - key: DB_HOST
-        value: <TU_HOST_DE_DB_EN_SUPABASE>
+        value: https://ccazzkctfgfxfmlcdcgf.supabase.co
       - key: DB_PORT
         value: 5432
       - key: DB_NAME
