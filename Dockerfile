@@ -46,8 +46,9 @@ RUN pip install --upgrade pip \
 RUN mkdir -p /var/log/odoo && chown odoo:odoo /var/log/odoo
 
 # Expone el puerto Odoo
-EXPOSE 8069
+#EXPOSE 8069
 
 # Comando por defecto
-CMD ["./odoo-bin", "-c", "/etc/odoo/odoo.conf"]
+CMD ["sh", "-c", "./odoo-bin -c odoo17.conf --http-port=$PORT"]
+
 
