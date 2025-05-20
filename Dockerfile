@@ -1,13 +1,13 @@
-# Usa la imagen oficial de Odoo 17 como base
 FROM odoo:17
 
-# Instala dependencias del sistema necesarias para python-ldap y otras
+# Instala todas las dependencias del sistema necesarias
 RUN apt-get update && apt-get install -y \
     gcc \
+    g++ \
+    build-essential \
     libsasl2-dev \
     libldap2-dev \
     libssl-dev \
-    build-essential \
     libxml2-dev \
     libxslt-dev \
     libpq-dev \
@@ -34,7 +34,7 @@ COPY ./addons /mnt/extra-addons
 
 # Instala dependencias Python
 RUN pip install --upgrade pip \
-    && pip install -r /requirements.txt
+    && pip install --no-cache-dir -r /requirements.txt
 
 # Expone el puerto Odoo
 EXPOSE 8069
