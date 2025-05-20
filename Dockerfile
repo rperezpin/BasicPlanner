@@ -46,4 +46,4 @@ RUN pip install --upgrade pip \
 EXPOSE 8069
 
 # Comando por defecto
-CMD ["odoo", "-c", "/etc/odoo/odoo.conf"]
+CMD ["odoo", "-c", "/etc/odoo/odoo17.conf"]
