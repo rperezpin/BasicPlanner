@@ -2,10 +2,12 @@ services:
   - type: web
     name: odoo17
     env: python
-    plan: free
-    buildCommand: ./build.sh
-    startCommand: |
-      odoo -c odoo.conf
+    buildCommand: |
+      apt-get update && \
+      apt-get install -y libsasl2-dev libldap2-dev libssl-dev && \
+      pip install --upgrade pip && \
+      pip install -r requirements.txt
+    startCommand: odoo -c odoo.conf
     envVars:
       - key: HOST
         value: 0.0.0.0
