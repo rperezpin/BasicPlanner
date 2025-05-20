@@ -37,6 +37,8 @@ RUN apt-get update && apt-get install -y \
 # Copia requerimientos y módulos
 COPY ./requirements.txt /requirements.txt
 COPY ./addons /mnt/extra-addons
+COPY ./odoo17.conf /etc/odoo/odoo.conf
+
 
 # Instala pip y las dependencias de Python
 RUN pip install --upgrade pip \
@@ -49,6 +51,7 @@ RUN mkdir -p /var/log/odoo && chown odoo:odoo /var/log/odoo
 #EXPOSE 8069
 
 # Comando por defecto
-CMD ["sh", "-c", "./odoo-bin -c odoo17.conf --http-port=$PORT"]
+CMD ["./odoo-bin", "-c", "/etc/odoo/odoo.conf", "--xmlrpc-interface=0.0.0.0", "--http-port=${PORT}"]
+
 
 
