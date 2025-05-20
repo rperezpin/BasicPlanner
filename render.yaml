@@ -1,20 +1,16 @@
 services:
   - type: web
     name: odoo17
-    env: python
-    buildCommand: |
-      apt-get update && \
-      apt-get install -y gcc libsasl2-dev libldap2-dev libssl-dev && \
-      pip install --upgrade pip && \
-      pip install -r requirements.txt
-    startCommand: odoo -c odoo.conf
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
     envVars:
       - key: HOST
         value: 0.0.0.0
       - key: PORT
-        value: 8000
+        value: 8069
       - key: DB_HOST
-        value: https://ccazzkctfgfxfmlcdcgf.supabase.co
+        value: <TU_HOST_DE_DB_EN_SUPABASE>
       - key: DB_PORT
         value: 5432
       - key: DB_NAME
