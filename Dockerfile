@@ -10,7 +10,6 @@ USER root
 # --allow-downgrades para resolver libpq y --no-install-recommends para aligerar
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        libpq5 \
         libpq-dev \
         gcc g++ python3-dev build-essential libsasl2-dev \
         libldap2-dev libssl-dev libxml2-dev libxslt-dev libjpeg-dev \
