@@ -31,7 +31,7 @@ COPY ./odoo17.conf /etc/odoo/odoo.conf
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
 
 RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r /requirements.txt
+    pip install --no-cache-dir --break-system-packages -r /requirements.txt
 
 ###############################################################################
 # 3️⃣  Logs, puertos y arranque
