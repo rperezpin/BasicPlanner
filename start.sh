@@ -5,7 +5,7 @@ cat > /etc/odoo/odoo.conf <<EOF
 [options]
 admin_passwd = Agerpix12345
 db_host = ${PGHOST}
-db_port = ${PGPORT}
+db_port = 5432
 db_user = ${PGUSER}
 db_password = ${PGPASSWORD}
 addons_path = /mnt/extra-addons
