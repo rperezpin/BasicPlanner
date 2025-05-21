@@ -9,16 +9,16 @@ USER root
 
 # --allow-downgrades para resolver libpq y --no-install-recommends para aligerar
 RUN apt-get update && \
-    apt-get install -y --fix-broken && \
-    apt-get install -y --allow-downgrades --no-install-recommends \
-        libpq5=14.17-0ubuntu0.22.04.1 \
-        libpq-dev=14.17-0ubuntu0.22.04.1 \
+    apt-get install -y --no-install-recommends \
+        libpq5 \
+        libpq-dev \
         gcc g++ python3-dev build-essential libsasl2-dev \
         libldap2-dev libssl-dev libxml2-dev libxslt-dev libjpeg-dev \
         zlib1g-dev libffi-dev libtiff5-dev libjpeg8-dev libopenjp2-7-dev \
         liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev libxcb1-dev \
         libx11-dev libegl1-mesa libopus0 python3-ldap && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
+
 
 ###############################################################################
 # 2️⃣  Código y requirements
