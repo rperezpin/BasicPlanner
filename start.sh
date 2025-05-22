@@ -1,14 +1,15 @@
 #!/bin/bash
-
 set -e  # Detener en caso de error
 
-echo ">>> Generando archivo odoo.conf con:"
-echo "PGHOST=$PGHOST PGPORT=$PGPORT PGUSER=$PGUSER PGPASSWORD=$PGPASSWORD"
-
-# Validar que PGPORT esté definida
+echo ">>> Validando entorno..."
 [ -z "$PGPORT" ] && echo "❌ PGPORT no está definida!" && env && exit 1
 
-# Crear archivo de configuración
+echo ">>> Generando odoo.conf con:"
+echo "PGHOST=$PGHOST PGPORT=$PGPORT PGUSER=$PGUSER"
+
+mkdir -p /var/log/odoo /var/lib/odoo /mnt/extra-addons /mnt/custom-addons
+chown -R odoo:odoo /var/log/odoo /var/lib/odoo /mnt/extra-addons /mnt/custom-addons /tmp
+
 cat > /etc/odoo/odoo.conf <<EOF
 [options]
 admin_passwd = Agerpix12345
@@ -23,9 +24,11 @@ EOF
 echo ">>> Archivo generado:"
 cat /etc/odoo/odoo.conf
 
-echo ">>> Actualizando todos los módulos para recompilar assets..."
-odoo -c /etc/odoo/odoo.conf -u all --stop-after-init --log-level=debug
-find /var/lib/odoo -name "*.assets.json" -delete
+echo ">>> Borrando caché de assets antiguos..."
+find /var/lib/odoo -name "*.assets.json" -delete || true
+
+echo ">>> Recompilando assets y actualizando módulos..."
+su odoo -s /bin/bash -c "odoo -c /etc/odoo/odoo.conf -u all --stop-after-init --log-level=debug"
 
 echo ">>> Iniciando Odoo..."
-exec odoo -c /etc/odoo/odoo.conf --http-port=${PORT:-8069} --xmlrpc-interface=0.0.0.0
+exec su odoo -s /bin/bash -c "odoo -c /etc/odoo/odoo.conf --http-port=${PORT:-8069} --xmlrpc-interface=0.0.0.0"
