@@ -47,8 +47,6 @@ RUN mkdir -p /var/log/odoo && chown odoo:odoo /var/log/odoo
 
 EXPOSE 8069
 
-COPY ./start.sh /start.sh
-
+COPY start.sh /start.sh
 RUN chmod +x /start.sh
-
 CMD ["/start.sh"]
