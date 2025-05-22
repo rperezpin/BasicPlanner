@@ -2,6 +2,9 @@
 
 set -e  # Detener en error
 
+echo ">>> Actualizando todos los módulos para recompilar assets..."
+odoo -c /etc/odoo/odoo.conf -u all --stop-after-init
+
 echo ">>> Generando archivo odoo.conf con:"
 echo "PGHOST=$PGHOST PGPORT=$PGPORT PGUSER=$PGUSER PGPASSWORD=$PGPASSWORD"
 
