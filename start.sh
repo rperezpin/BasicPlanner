@@ -12,7 +12,7 @@ db_host = ${PGHOST}
 db_port = ${PGPORT}
 db_user = odoo_user
 db_password = Agerpix12345
-addons_path = /mnt/extra-addons
+addons_path = /mnt/extra-addons,/mnt/custom-addons
 logfile = /var/log/odoo/odoo17.log
 EOF
 
