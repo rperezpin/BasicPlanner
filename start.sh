@@ -10,7 +10,7 @@ cat > /etc/odoo/odoo.conf <<EOF
 admin_passwd = Agerpix12345
 db_host = ${PGHOST}
 db_port = ${PGPORT}
-db_user = odoo-user
+db_user = odoo_user
 db_password = Agerpix12345
 addons_path = /mnt/extra-addons
 logfile = /var/log/odoo/odoo17.log
