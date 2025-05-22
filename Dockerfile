@@ -31,8 +31,6 @@ RUN apt-get install -y --no-install-recommends \
 ###############################################################################
 COPY ./requirements.txt /requirements.txt
 COPY ./addons /mnt/extra-addons
-COPY ./odoo17.conf /etc/odoo/odoo.conf
-COPY ./odoo17.conf /etc/odoo/odoo17.conf
 
 # Permite a pip sobrescribir los paquetes instalados por APT
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
