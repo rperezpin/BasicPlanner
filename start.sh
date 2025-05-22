@@ -1,13 +1,14 @@
 #!/bin/bash
 
-set -e  # Detener en error
-
-echo ">>> Actualizando todos los módulos para recompilar assets..."
-odoo -c /etc/odoo/odoo.conf -u all --stop-after-init
+set -e  # Detener en caso de error
 
 echo ">>> Generando archivo odoo.conf con:"
 echo "PGHOST=$PGHOST PGPORT=$PGPORT PGUSER=$PGUSER PGPASSWORD=$PGPASSWORD"
 
+# Validar que PGPORT esté definida
+[ -z "$PGPORT" ] && echo "❌ PGPORT no está definida!" && env && exit 1
+
+# Crear archivo de configuración
 cat > /etc/odoo/odoo.conf <<EOF
 [options]
 admin_passwd = Agerpix12345
@@ -20,8 +21,10 @@ logfile = /var/log/odoo/odoo17.log
 EOF
 
 echo ">>> Archivo generado:"
-[ -z "$PGPORT" ] && echo "❌ PGPORT no está definida!" && env && exit 1
-
 cat /etc/odoo/odoo.conf
 
+echo ">>> Actualizando todos los módulos para recompilar assets..."
+odoo -c /etc/odoo/odoo.conf -u all --stop-after-init
+
+echo ">>> Iniciando Odoo..."
 exec odoo -c /etc/odoo/odoo.conf --http-port=${PORT:-8069} --xmlrpc-interface=0.0.0.0
