@@ -32,6 +32,8 @@ RUN apt-get install -y --no-install-recommends \
 COPY ./requirements.txt /requirements.txt
 COPY ./addons /mnt/extra-addons
 COPY ./custom-addons /mnt/custom-addons
+RUN chown -R odoo:odoo /mnt/extra-addons /mnt/custom-addons /var/log/odoo
+
 
 # Permite a pip sobrescribir los paquetes instalados por APT
 ENV PIP_BREAK_SYSTEM_PACKAGES=1

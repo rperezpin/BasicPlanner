@@ -24,7 +24,8 @@ echo ">>> Archivo generado:"
 cat /etc/odoo/odoo.conf
 
 echo ">>> Actualizando todos los módulos para recompilar assets..."
-odoo -c /etc/odoo/odoo.conf -u all --stop-after-init
+odoo -c /etc/odoo/odoo.conf -u all --stop-after-init --log-level=debug
+find /var/lib/odoo -name "*.assets.json" -delete
 
 echo ">>> Iniciando Odoo..."
 exec odoo -c /etc/odoo/odoo.conf --http-port=${PORT:-8069} --xmlrpc-interface=0.0.0.0
